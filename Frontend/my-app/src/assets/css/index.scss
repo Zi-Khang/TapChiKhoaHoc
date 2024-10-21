@@ -1,0 +1,928 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+img {
+  width: 100%;
+}
+
+/*header*/
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  z-index: 100000;
+}
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.88);
+  transition: all ease-in-out 0.3s;
+}
+header .logo {
+  position: absolute;
+  top: 0;
+  transform: translate(100px, 20px);
+  width: 100px;
+  height: auto;
+  border: 3px white solid;
+  border-radius: 50%;
+  overflow: hidden;
+}
+header .logo:hover {
+  border-color: #e71a0f;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+header .navbar {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: 0 auto;
+}
+header .navbar .nav-link {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+}
+header .navbar .nav-link:hover {
+  color: #e71a0f;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+header .navbar .nav-link.active {
+  color: #e71a0f;
+}
+
+header .login {
+  display: flex;
+  justify-content: space-between;
+  width: fit-content;
+  height: 100%;
+  margin-right: 30px;
+  margin-left: auto;
+}
+header .link-user-login {
+  text-decoration: none;
+}
+header .login i {
+  margin: 0 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  height: 100%;
+}
+header .login i:hover {
+  color: #e71a0f;
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+.search-box {
+  width: fit-content;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
+}
+.input-search {
+  height: 50px;
+  border-style: none;
+  padding: 10px;
+  font-size: 18px;
+  letter-spacing: 2px;
+  outline: none;
+  transition: all 0.5s ease-in-out;
+  padding-right: 40px;
+  color: #fff;
+  width: 300px;
+  border-radius: 0px;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+.input-search::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 100;
+}
+.btn-search {
+  width: 50px;
+  height: 50px;
+  border-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  position: absolute;
+  right: 0px;
+  color: #ffffff;
+  background-color: transparent;
+  pointer-events: painted;
+}
+
+//fix
+.homepage-title {
+  margin-top: 150px;
+  color: white;
+  font-weight: 600;
+  margin-left: 20px;
+}
+/*main*/
+main {
+}
+
+/* Cart*/
+
+/*hero*/
+main .hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+main .hero .arrows {
+  position: absolute;
+  top: 50%;
+  right: 20%;
+  z-index: 100;
+}
+main .hero .arrows button {
+  background-color: #eee5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: #eee;
+  font-family: monospace;
+  font-weight: 700;
+  margin: 5px;
+}
+main .hero .arrows button:hover {
+  background-color: #eee;
+  color: black;
+  transition: all 0.5s ease-in-out;
+}
+main .hero .hero-item {
+  position: absolute;
+  inset: 0 0 0 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.5s all ease-in-out;
+}
+main .hero .hero-item.active {
+  opacity: 1;
+  z-index: 100;
+}
+@keyframes showContent {
+  to {
+    transform: translateY(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+main .hero .hero-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to top, #000 40%, transparent);
+}
+main .hero .hero-item .hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+main .hero .hero-item.active .hero-content {
+  position: absolute;
+  left: 10%;
+  top: 16%;
+  width: 50%;
+  z-index: 2000;
+  transform: translateY(30px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.4s 0.25s ease-in-out 1 forwards;
+}
+
+main .hero-content .release-time {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+}
+main .hero-content .movie-detail-btn {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+main .hero-content .movie-detail-btn .button-34.booking-ticket {
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  word-break: break-word;
+  border: 0;
+  background-color: #e20442;
+  width: 200px;
+  margin-left: 15px;
+  text-align: center;
+  text-decoration: none;
+}
+main .hero-content .movie-detail-btn .button-34.more-inf {
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  word-break: break-word;
+  border: 2px solid white;
+  width: 200px;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+}
+main .hero-content .movie-detail-btn .button-34:hover {
+  transform: scale(1.02);
+  transition: all ease-in-out 0.3s;
+}
+main .hero-content .movie-name {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  font-size: 100px;
+  letter-spacing: 25px;
+}
+
+main .hero .thumbnail-hot-movie {
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+main .hero .thumbnail-hot-movie .hot-movie-item {
+  width: 220px;
+  height: 300px;
+  margin: 0 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+}
+main .hero .thumbnail-hot-movie .hot-movie-item.active {
+  transform: scale(1.1);
+  opacity: 1;
+}
+main .hero .thumbnail-hot-movie .hot-movie-item:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+main .hero .thumbnail-hot-movie .hot-movie-item img {
+  width: 100%;
+  height: 100%;
+}
+
+/*card-item*/
+.col-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-link {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  position: relative;
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 20px 0;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.card-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover .card-content {
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+}
+
+.card-review {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: white;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/*swiperjs*/
+.swiper {
+  width: 100%;
+  margin: 0 auto; /* Căn giữa Swiper */
+  padding: 0; /* Kiểm tra padding */
+  text-align: center; /* Căn giữa các nội dung bên trong */
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: black;
+  font-size: 45px;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  content: "";
+}
+
+/*.swiper-slide {
+    width: 100%;
+    height: 100%;
+}*/
+/*.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}*/
+
+/*Showing-movie*/
+main .movie-section .swiper-button-prev,
+main .movie-section .swiper-button-next {
+  color: black;
+  font-size: 45px;
+}
+main .movie-section .swiper-button-prev::after,
+main .movie-section .swiper-button-next::after {
+  content: "";
+}
+main .movie-section .swiper-button-next {
+  right: 27px;
+}
+.movie-section {
+  padding: 20px 0;
+  margin: 50px 0 0;
+}
+.movie-section .movie-section-container {
+  border-top: 2px solid black;
+  padding: 0;
+}
+.movie-section .button-34 {
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  touch-action: manipulation;
+  width: fit-content;
+  border: 0;
+  background-color: rgb(0, 0, 77);
+}
+.movie-section .button-34:hover {
+  background: #5e5df0;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  transition: all ease-in-out 0.3s;
+}
+.movie-section .section-title {
+  display: flex;
+  padding: 8px;
+  border: 3px solid gray;
+  border-radius: 999px;
+  width: fit-content;
+  background-color: rgb(0, 0, 77);
+  transform: translateY(-50%);
+}
+
+/*product-item*/
+/*main .hero-detail-product {
+    position: relative;
+    width: 100%;
+    height: 60rem;
+}*/
+main .hero-detail-product .background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+main .hero-detail-product::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0) 50%
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 50%),
+    linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 50%);
+  background-blend-mode: multiply;
+  background-color: transparent;
+  z-index: 2000;
+}
+
+main .hero-detail-product .movie-detail {
+  color: white;
+  width: 50%;
+  height: auto;
+  z-index: 2000;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-45%);
+  left: 10%;
+  z-index: 10000;
+}
+main .hero-detail-product .movie-detail .release-time {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: white;
+  font-weight: 700;
+}
+main .hero-detail-product .movie-detail .movie-name {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 700;
+  font-size: 100px;
+  letter-spacing: 25px;
+}
+
+main .hero-detail-product .movie-detail span {
+  text-transform: uppercase;
+  color: white;
+  font-weight: 100;
+  font-size: 40px;
+}
+main .hero-detail-product .movie-detail .director {
+  text-transform: uppercase;
+  color: white;
+  font-size: 45px;
+  font-weight: 600;
+  margin-left: 20px;
+}
+main .hero-detail-product .movie-detail .movie-content-div {
+  color: white;
+  font-weight: 500;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+main .hero-detail-product .movie-detail .movie-content {
+  margin: 0;
+}
+main .hero-detail-product .movie-detail .cast-list {
+  color: white;
+  text-transform: uppercase;
+}
+main .hero-detail-product .movie-detail .movie-cast {
+  width: 100%;
+  position: relative;
+  padding: 20px 0;
+}
+main .hero-detail-product .movie-detail .movie-cast .swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+main .hero-detail-product .movie-detail .movie-cast .swiper-slide .cast-name {
+  color: white;
+  font-weight: 600;
+}
+main .hero-detail-product .movie-detail .movie-cast .swiper-slide img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  border: 3px solid darkgrey;
+  cursor: pointer;
+}
+main .hero-detail-product .movie-detail .movie-cast .swiper-slide img:hover {
+  border: 3px solid #e20442;
+  transition: all ease-in-out 0.3s;
+}
+main .hero-detail-product .movie-detail .movie-cast .swiper-button-next,
+main .hero-detail-product .movie-detail .movie-cast .swiper-button-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+main .hero-detail-product .movie-detail .movie-detail-btn {
+  display: flex;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+main
+  .hero-detail-product
+  .movie-detail
+  .movie-detail-btn
+  .button-34.booking-ticket {
+  border-radius: 999px;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  word-break: break-word;
+  border: 0;
+  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+  width: 200px;
+  margin-left: 15px;
+}
+main .hero-detail-product .movie-detail .movie-detail-btn .button-34.more-inf {
+  border-radius: 999px;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 20px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  word-break: break-word;
+  border: 2px solid white;
+  width: 200px;
+  background-color: transparent;
+}
+main .hero-detail-product .movie-detail .movie-detail-btn .button-34:hover {
+  transform: scale(1.02);
+  transition: all ease-in-out 0.3s;
+}
+
+main .hero-detail-product .movie-detail .swiper-button-prev::after,
+main .hero-detail-product .movie-detail .swiper-button-next::after {
+  content: "";
+}
+main .hero-detail-product .movie-detail .swiper-button-prev,
+main .hero-detail-product .movie-detail .swiper-button-next {
+  font-size: 35px;
+}
+
+/*home-movie-render*/
+main .movie-section .button-34.active {
+  background: #5e5df0;
+  box-shadow: #5e5df0 0 10px 20px -10px;
+}
+
+/*login-section*/
+.home-page-logo {
+  width: 100px;
+  height: auto;
+  border: 3px white solid;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.login-wrapper {
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper .login-form {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 15px 50px;
+  border-radius: 15px;
+  background-color: #253745;
+  color: white;
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.4s 0.25s ease-in-out 1 forwards;
+}
+.login-wrapper .login-form .home-page {
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+}
+.login-wrapper .login-form .home-page i {
+  color: white;
+}
+.login-wrapper .login-form .home-page i:hover {
+  color: #0d6efd;
+}
+.login-wrapper .login-form .login-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  width: 100%;
+  margin-bottom: 50px;
+  border-radius: 15px;
+}
+.login-wrapper .login-form .login-bar .tab {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper .login-form .login-bar .tab h4 {
+  cursor: pointer;
+  padding: 10px 0;
+}
+.login-wrapper .login-form .login-bar .tab.active h4 {
+  color: #5b42f3;
+}
+.login-wrapper form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateY(30px);
+  filter: blur(20px);
+  opacity: 0;
+  animation: showContent 0.4s 0.25s ease-in-out 1 forwards;
+}
+.login-wrapper form .login-title {
+  font-size: 50px;
+  text-transform: uppercase;
+}
+.login-wrapper form .login-inp {
+  height: 100px;
+  width: 400px;
+  padding: 20px;
+  position: relative;
+}
+.login-wrapper form .login-inp i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  color: white;
+}
+.login-wrapper form input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid white;
+  outline: none;
+  font-size: 16px;
+  color: white;
+  background-color: #253745;
+}
+.login-wrapper form input::placeholder {
+  font-weight: 600;
+}
+.login-wrapper form input:focus {
+  background-color: #253745;
+  font-size: 16px;
+}
+.login-wrapper form input:not(:placeholder-shown) {
+  background-color: #253745;
+}
+.login-wrapper form input[value] {
+  background-color: #253745;
+}
+
+/* Ghi đè kiểu dáng của input khi bị autofill */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #253745 inset !important; /* Màu nền mong muốn */
+  box-shadow: 0 0 0 1000px #253745 inset !important; /* Ghi đè màu nền */
+  -webkit-text-fill-color: white !important; /* Màu chữ */
+}
+
+/* Kiểu dáng cho các trình duyệt không phải Webkit */
+input:-moz-autofill {
+  background-color: #253745 !important; /* Màu nền mong muốn */
+  color: white !important; /* Màu chữ */
+}
+
+.login-wrapper form .login-btn {
+  padding: 20px 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-wrapper form .button-34 {
+  margin: 20px;
+  background-color: #1899d6;
+  padding: 10px 20px;
+  border-radius: 999px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Inter, Helvetica, "Apple Color Emoji", "Segoe UI Emoji",
+    NotoColorEmoji, "Noto Color Emoji", "Segoe UI Symbol", "Android Emoji",
+    EmojiSymbols, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+.login-wrapper form .button-34.new-value-btn {
+  background-color: #9ba8ab;
+}
+.login-wrapper .register span {
+  margin: 10px;
+  font-size: 18px;
+}
+.login-wrapper .register .register-link {
+  color: rgb(24, 153, 214);
+  cursor: pointer;
+}
+/* user-dropdown-menu*/
+.user-avt {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.user-avt:hover {
+  transform: scale(1.3);
+  transition: all ease-in-out 0.3s;
+}
+.user-avt img {
+  width: 100%;
+  height: 100%;
+}
+/*footer*/
+footer {
+  width: 100%;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: grey;
+}
+footer .row {
+  padding: 0;
+}
+footer .footer-col p {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 15px;
+}
+footer .footer-col ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+footer .footer-col a {
+  text-decoration: none;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: white;
+}
+footer .footer-col a:hover {
+  color: red;
+}
