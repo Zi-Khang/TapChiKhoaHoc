@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const LoginComponent = ({ onLoginBtnClick = () => {} }) => {
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -11,8 +11,9 @@ export const LoginComponent = ({ onLoginBtnClick = () => {} }) => {
         <input
           id="login-email"
           type="email"
+          name="email"
           placeholder="Email"
-          value={username}
+          value={email}
           onChange={(e) => {
             setUsername(e.target.value);
           }}
@@ -24,6 +25,7 @@ export const LoginComponent = ({ onLoginBtnClick = () => {} }) => {
           id="login-password"
           type="password"
           placeholder="Mật khẩu"
+          name="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
@@ -40,7 +42,7 @@ export const LoginComponent = ({ onLoginBtnClick = () => {} }) => {
           onClick={(e) => {
             e.preventDefault();
             onLoginBtnClick({
-              username,
+              email,
               password,
             });
           }}

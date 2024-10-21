@@ -3,7 +3,7 @@ import { useState } from "react";
 import { LoginComponent, RegisterComponent } from "../../components";
 import classNames from "classnames";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import { createUserAPI } from "../../util/api"
+import { createUserAPI,loginUserAPI } from "../../util/api"
 
 
 const mockUserData = {
@@ -27,31 +27,32 @@ export const Login = () => {
     setRegister(true);
   };
 
-  const loginHandler = (userInfo) => {
-    if (
-      userInfo.username === mockUserData.username &&
-      userInfo.password === mockUserData.password
-    ) {
+  const loginHandler = async (values) => {
+    const { email, password } = values
+    const res = await loginUserAPI(email, password)
+    console.log(res,res.data.EC);
+    
+    if (res && res.data.EC === 0) {
       localStorage.setItem(
         "userInfo",
         JSON.stringify({
           isLoggedIn: true,
-          username: mockUserData.username,
-          avatar: mockUserData.avatar,
+          username: res.data.user.name,
         })
       );
-      navigate({ pathname: "/" });
+      // navigate({ pathname: "/" });
     } else {
-      alert("Username or password is not correct");
+      alert(res.data.EM);
     }
   };
+
   const onFinish = async (values) => {
-    const {email, password} = values
+    const { email, password } = values
     const res = await createUserAPI(email, password)
     console.log('Data: ', res.data);
     console.log('Success: ', values);
   }
-  
+
 
   const user = useMemo(() => {
     return JSON.parse(localStorage.getItem("userInfo"));
@@ -85,7 +86,7 @@ export const Login = () => {
           </div>
 
           {login && <LoginComponent onLoginBtnClick={loginHandler} />}
-          {register && <RegisterComponent onRegisterBtnClick={onFinish}/>}
+          {register && <RegisterComponent onRegisterBtnClick={onFinish} />}
           <Link className="home-page" to={{ pathname: "/" }}>
             <i className="fa-solid fa-house fa-2xl"></i>
           </Link>
