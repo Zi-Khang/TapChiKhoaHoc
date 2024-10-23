@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "..";
+import Header from '../layouts/Header'
 import { Outlet } from "react-router";
 
 export const BaseLayout = () => {

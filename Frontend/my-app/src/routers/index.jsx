@@ -4,6 +4,7 @@ import { HomePage } from "../pages/HomePage";
 import { PageNotFound } from "../pages/PageNotFound";
 import { Login } from "../pages/Login/Login";
 import { BaseLayout } from "../components";
+import TacGia from "../pages/TacGia/TacGia";
 
 const AppRouter = () => {
   return (
@@ -11,6 +12,7 @@ const AppRouter = () => {
       <Routes>
         <Route element={<BaseLayout />}>
           <Route path="" element={<HomePage />} />
+          <Route path="Tacgia" element={<TacGia />} />
           <Route path="*" element={<PageNotFound />}></Route>
         </Route>
         <Route path="login" element={<Login />} />
